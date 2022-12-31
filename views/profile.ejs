@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 1440px;
+            padding-inline: 1rem;
+            margin-inline: auto;
+        }
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding:1rem;
+        }
+        .form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .cs-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            max-width: 28rem;
+            margin-inline: auto;
+        }
+        form#registerForm {
+            width: 100%;
+        }
+        input {
+            padding: 0.4rem;
+        }
+        .submit {
+            text-align: center;
+        }
+        .changePassword {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+        .changePassword a{
+            text-decoration: none;
+            padding: 5px;
+            background-color: #000000;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+        button {
+            padding: 5px;
+            background-color: red;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .error{
+            margin-top: 1rem;
+        }
+        .error p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="heading">
+                <h1>Profile</h1>
+                <div class="changePassword">
+                    <form action="/logout" method="POST"><button type="submit">Logout</button></form>
+                    <a href="/updatePassword">Change password</a>
+                </div>
+            </div>
+            <div class="form">
+                <form action="/updateProfile" method="POST" id="registerForm" enctype="multipart/form-data">
+                    <div class="cs-flex">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" value="<%= query.name %>" placeholder="Enter your name">
+                    </div>
+                    <div class="cs-flex">
+                        <label for="userName">Username</label>
+                        <input type="text" name="userName" id="userName" value="<%= query.userName %>" placeholder="Enter your username" disabled>
+                    </div>
+                    <div class="cs-flex">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" value="<%= query.email %>" placeholder="Enter your email" disabled>
+                    </div>
+                    <div class="cs-flex">
+                        <label for="number">Phone number</label>
+                        <input type="text" name="phoneNumber" id="number" value="<%= query.phoneNumber %>" placeholder="Enter your number">
+                    </div>
+                    <div class="cs-flex">
+                        <label for="number">State</label>
+                        <input type="text" name="state" id="number" value="<%= query.state %>" placeholder="Enter your state">
+                    </div>
+                    <div class="cs-flex">
+                        <label for="number">Country</label>
+                        <input type="text" name="country" id="number" value="<%= query.country %>" placeholder="Enter your country">
+                    </div>
+                    <div class="cs-flex">
+                        <label for="number">Collage</label>
+                        <input type="text" name="collage" id="number" value="<%= query.collageName %>" placeholder="Enter your collage">
+                    </div>
+                    <div class="cs-flex">
+                        <label for="number">Profile picture</label>
+                        <img src="<%= query.profile %>" alt="error">
+                        <input type="file" name="profile" id="number">
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="Update profile">
+                    </div>
+                </form>
+                <div class="error">
+                    <% if(query && !query.name) {%>
+                        <p><%= query %></p>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
